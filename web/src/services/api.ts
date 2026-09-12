@@ -1,6 +1,6 @@
 import type { DashboardResponse, AchievementRecord } from '../types/api';
 
-const DEFAULT_API_BASE = 'http://127.0.0.1:8000/api/v1';
+const DEFAULT_API_BASE = 'https://focusflow-9iqs.onrender.com/api/v1';
 
 export class ApiClient {
   static getBaseUrl(): string {

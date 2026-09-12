@@ -53,6 +53,17 @@ app.include_router(dashboard_router, prefix=settings.API_V1_STR)
 app.include_router(achievements_router, prefix=settings.API_V1_STR)
 app.include_router(difficulty_router, prefix=settings.API_V1_STR)
 
+@app.get("/")
+def root():
+    return {
+        "service": settings.PROJECT_NAME,
+        "status": "online",
+        "docs": "/docs",
+        "api_v1": settings.API_V1_STR,
+        "health": f"{settings.API_V1_STR}/health",
+        "dashboard": f"{settings.API_V1_STR}/dashboard",
+    }
+
 @app.get(f"{settings.API_V1_STR}/health")
 def health_check():
     return {
