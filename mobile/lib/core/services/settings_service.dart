@@ -29,6 +29,12 @@ class SettingsService {
   bool get onboardingCompleted => _prefs.getBool(_keyOnboardingDone) ?? false;
   set onboardingCompleted(bool val) => _prefs.setBool(_keyOnboardingDone, val);
 
-  String get baseUrl => _prefs.getString(_keyBaseUrl) ?? ApiConstants.defaultBaseUrl;
+  String get baseUrl {
+    final saved = _prefs.getString(_keyBaseUrl);
+    if (saved == null || saved.contains('127.0.0.1') || saved.contains('localhost')) {
+      return ApiConstants.defaultBaseUrl;
+    }
+    return saved;
+  }
   set baseUrl(String val) => _prefs.setString(_keyBaseUrl, val);
 }

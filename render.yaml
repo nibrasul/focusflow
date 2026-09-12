@@ -1,12 +1,24 @@
 services:
   - type: web
     name: focusflow-backend
-    env: docker
-    dockerfilePath: Dockerfile
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
         value: postgresql://neondb_owner:npg_3U2VxyIjHYFw@ep-fragrant-salad-axdm6nha-pooler.c-4.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+      - key: PYTHONPATH
+        value: .
       - key: PROJECT_NAME
         value: FocusFlow Concentration & Attention Engine
-      - key: API_V1_STR
-        value: /api/v1
+
+  - type: static
+    name: focusflow-web
+    rootDir: web
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
