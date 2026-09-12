@@ -1,0 +1,199 @@
+:root {
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-translucent: rgba(255, 255, 255, 0.88);
+  --secondary-surface: #F1F5F9;
+  
+  --primary: #007AFF;
+  --primary-dark: #0056B3;
+  --primary-light: #EBF5FF;
+  
+  --success: #10B981;
+  --success-light: #ECFDF5;
+  --warning: #F59E0B;
+  --warning-light: #FFFBEB;
+  --error: #EF4444;
+  --error-light: #FEF2F2;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+
+  --border: #E2E8F0;
+  --border-light: #F1F5F9;
+
+  /* Target colors */
+  --target-blue: #2563EB;
+  --target-red: #DC2626;
+  --target-green: #16A34A;
+  --target-yellow: #CA8A04;
+  --target-purple: #9333EA;
+  --target-orange: #EA580C;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 540px;
+  min-height: 100vh;
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.04);
+}
+
+/* Glass card */
+.glass-card {
+  background: var(--surface-translucent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.glass-card-interactive {
+  cursor: pointer;
+}
+
+.glass-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.glass-card-interactive:active {
+  transform: scale(0.98);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 50px;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 122, 255, 0.25);
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--secondary-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: #E2E8F0;
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+}
+
+/* Stimulus box */
+.stimulus-box {
+  width: 64px;
+  height: 64px;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+
+.stimulus-box:hover {
+  transform: scale(1.06);
+  border-color: var(--primary);
+}
+
+.stimulus-box:active {
+  transform: scale(0.94);
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes floatDrift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(15px, -20px); }
+  100% { transform: translate(-10px, 15px); }
+}
+
+.animate-drift {
+  animation: floatDrift 5s infinite alternate ease-in-out;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
