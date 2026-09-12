@@ -1,0 +1,8 @@
+# Template for production Android release signing keystore
+# Copy this file to 'key.properties' in mobile/android/ and fill in your actual keystore credentials.
+# NOTE: 'key.properties' is gitignored and will never be committed.
+
+storePassword=YOUR_KEYSTORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=YOUR_KEY_ALIAS
+storeFile=/path/to/your/upload-keystore.jks

@@ -41,5 +41,7 @@ mobile/macos/Pods/
 # IDE
 .idea/
 .vscode/
-*.swp
-*.swo
+# Releases
+releases/
+*.apk
+*.aab

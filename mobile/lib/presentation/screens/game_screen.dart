@@ -554,9 +554,17 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: FocusAppBar(
+    return PopScope(
+      canPop: _phase == GamePhase.instruction || _phase == GamePhase.completed,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        if (_phase == GamePhase.playing || _phase == GamePhase.countdown) {
+          _togglePause();
+        }
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: FocusAppBar(
         title: _getModeTitle(),
         score: _currentScore,
         streak: _currentStreak,
@@ -585,8 +593,9 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   String _getModeTitle() {
     switch (widget.gameMode) {
